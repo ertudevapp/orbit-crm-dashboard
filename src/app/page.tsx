@@ -9,6 +9,7 @@ import IncomeChart from './components/IncomeChart';
 import TrafficSourcesChart from './components/TrafficSourcesChart';
 import OverviewCard from './components/OverviewCard';
 import { getOverviewCards, LATEST_SALES, INCOME_DATA, getTrafficSources } from '@/constants/dashboard';
+import UserItem from './components/UserItem';
 
 const CompactSelect = styled(Select)(({ theme }) => ({
     minHeight: 24,
@@ -185,16 +186,11 @@ export default function DashboardPage() {
                                                 }}
                                             >
                                                 <TableCell>
-                                                    <Stack direction="row" spacing={2} alignItems="center">
-                                                        <Avatar
-                                                            src={sale.avatar}
-                                                            alt={`${sale.name} ${sale.surname}`}
-                                                            sx={{ width: 40, height: 40 }}
-                                                        />
-                                                        <Typography variant="body2" fontWeight={500}>
-                                                            {sale.name} {sale.surname}
-                                                        </Typography>
-                                                    </Stack>
+                                                    <UserItem
+                                                        avatar={sale.avatar}
+                                                        name={sale.name}
+                                                        surname={sale.surname}
+                                                    />
                                                 </TableCell>
                                                 <TableCell>
                                                     <Typography variant="body2" color="text.secondary">

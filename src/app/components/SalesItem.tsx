@@ -45,7 +45,7 @@ const SalesItem = ({ avatar, name, surname, packageName, amount, date, status }:
             <Avatar
                 src={avatar}
                 alt={`${name} ${surname}`}
-                sx={{ width: 40, height: 40, flexShrink: 0 }}
+                sx={{ width: 32, height: 32, flexShrink: 0 }}
             />
 
             {/* Info: Name + Package & Date */}
