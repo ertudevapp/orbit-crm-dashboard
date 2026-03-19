@@ -52,11 +52,11 @@ export default function DashboardPage() {
                         Here is Orbit Dashboard&apos;s summary for today.
                     </Typography>
                 </Stack>
-                <Stack direction={{ xs: "column", md: "row" }} spacing={{ xs: 1, sm: 2 }} alignItems={{ xs: "flex-end", md: "center" }} flex={1}>
-                    <Button fullWidth variant="outlined" size="small" startIcon={mdUp ? <Download size={12} /> : null}>
+                <Stack direction={{ xs: "column", md: "row" }} spacing={{ xs: 1, sm: 2 }} alignItems={{ xs: "flex-end", md: "center" }} flex={1} justifyContent="flex-end">
+                    <Button variant="outlined" size="small" startIcon={mdUp ? <Download size={12} /> : null}>
                         Get Report
                     </Button>
-                    <Button fullWidth variant="contained" size="small" startIcon={mdUp ? <RefreshCcw size={12} /> : null}>
+                    <Button variant="contained" size="small" startIcon={mdUp ? <RefreshCcw size={12} /> : null}>
                         Refresh Data
                     </Button>
                 </Stack>

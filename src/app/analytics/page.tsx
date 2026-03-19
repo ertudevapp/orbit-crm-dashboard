@@ -70,8 +70,6 @@ export default function AnalyticsPage() {
         },
     ];
 
-
-
     return (
         <Stack spacing={3}>
             <Stack spacing={0.5}>
