@@ -1,5 +1,12 @@
 import { LucideIcon } from 'lucide-react';
 
+export enum ValueFormat {
+    DEFAULT = 'default',
+    COMPACT = 'compact',
+    DURATION = 'duration',
+    PERCENT = 'percent',
+}
+
 export enum CardVariant {
     DEFAULT = 'default',
     PROGRESS = 'progress',
@@ -30,5 +37,6 @@ export type OverviewCardProps = {
     avatars?: string[];
     alertMessage?: string;
     progressValue?: number;
+    format?: ValueFormat;
 };
 

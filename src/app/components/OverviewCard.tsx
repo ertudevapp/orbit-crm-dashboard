@@ -3,17 +3,32 @@
 import { alpha, Avatar, AvatarGroup, LinearProgress, Paper, Stack, Typography, useTheme } from '@mui/material';
 import { AlertCircle } from 'lucide-react';
 import OverviewBadge from './OverviewBadge';
-import { CardVariant, BadgeType } from '@/types/overviewCard';
+import { CardVariant, BadgeType, ValueFormat } from '@/types/overviewCard';
 import type { OverviewCardProps } from '@/types/overviewCard';
 
-const formatValue = (val: number | string): string => {
-    if (typeof val === 'number') {
-        return val.toLocaleString('en-US', {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0,
-        });
+const formatValue = (val: number | string, format?: ValueFormat): string => {
+    if (typeof val === 'string') return val;
+
+    switch (format) {
+        case ValueFormat.COMPACT: {
+            if (val >= 1_000_000) return `${(val / 1_000_000).toFixed(1)}M`;
+            if (val >= 1_000) return `${(val / 1_000).toFixed(1)}K`;
+            return val.toString();
+        }
+        case ValueFormat.DURATION: {
+            const totalSeconds = Math.round(val);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+        case ValueFormat.PERCENT:
+            return `${val}`;
+        default:
+            return val.toLocaleString('tr-TR', {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+            });
     }
-    return val;
 };
 
 export default function OverviewCard({
@@ -29,6 +44,7 @@ export default function OverviewCard({
     avatars,
     alertMessage,
     progressValue,
+    format,
 }: OverviewCardProps) {
     const theme = useTheme();
 
@@ -38,9 +54,8 @@ export default function OverviewCard({
             sx={{
                 p: 2.5,
                 flex: 1,
-                border: `1px solid ${theme.palette.divider}`,
                 borderRadius: 2,
-                boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+                boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
             }}
         >
             <Stack spacing={1.5}>
@@ -66,7 +81,7 @@ export default function OverviewCard({
                 </Typography>
 
                 <Typography variant="h5" fontWeight={700} color="text.primary">
-                    {sign}{formatValue(value)}
+                    {sign}{formatValue(value, format)}
                 </Typography>
                 {variant === CardVariant.PROGRESS && progressValue !== undefined && (
                     <LinearProgress

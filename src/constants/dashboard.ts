@@ -3,8 +3,8 @@
  */
 
 import { Theme } from '@mui/material';
-import { Banknote, CircleCheckBig, Ticket, Users } from 'lucide-react';
-import { OverviewCardProps, CardVariant, BadgeType } from '@/types/overviewCard';
+import { Banknote, CircleCheckBig, Clock, Globe, MousePointerClick, Ticket, TrendingUp, Users } from 'lucide-react';
+import { OverviewCardProps, CardVariant, BadgeType, ValueFormat } from '@/types/overviewCard';
 import { IncomeDataPoint } from '@/app/components/IncomeChart';
 import { TrafficSourceData } from '@/app/components/TrafficSourcesChart';
 import { SalesData } from '@/types/dashboard';
@@ -151,3 +151,56 @@ export const getTrafficSources = (theme: Theme): TrafficSourceData[] => [
     { name: 'Social', value: 25, color: theme.palette.info.main },
     { name: 'Referral', value: 10, color: theme.palette.warning.main },
 ];
+
+export const getAnalyticsCards = (theme: Theme) => [
+    {
+        id: 1,
+        title: "Total Sessions",
+        value: 124500,
+        icon: Globe,
+        color: theme.palette.info.main,
+        sign: "",
+        format: ValueFormat.COMPACT,
+        variant: CardVariant.DEFAULT,
+        badgeType: BadgeType.INCREASE,
+        badgeValue: 12,
+    },
+    {
+        id: 2,
+        title: "Average Duration",
+        value: 345,
+        icon: Clock,
+        color: theme.palette.primary.main,
+        sign: "",
+        format: ValueFormat.DURATION,
+        variant: CardVariant.DEFAULT,
+        badgeType: BadgeType.INCREASE,
+        badgeValue: 8,
+    },
+    {
+        id: 3,
+        title: "Exit immediately",
+        value: 32.4,
+        icon: MousePointerClick,
+        color: theme.palette.success.main,
+        sign: "%",
+        format: ValueFormat.PERCENT,
+        variant: CardVariant.DEFAULT,
+        badgeType: BadgeType.DECREASE,
+        badgeValue: 3,
+    },
+    {
+        id: 4,
+        title: "Bounce Rate",
+        value: 4.2,
+        icon: TrendingUp,
+        color: theme.palette.error.main,
+        sign: "%",
+        format: ValueFormat.PERCENT,
+        variant: CardVariant.DEFAULT,
+        badgeType: BadgeType.DECREASE,
+        badgeValue: 1,
+    },
+
+]
+
